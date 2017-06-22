@@ -1,6 +1,6 @@
 Muestra de programación.
 
-La carpeta contiene 5 carpetas:
+La carpeta contiene 4 carpetas:
 
 #PHP
 - api: 
