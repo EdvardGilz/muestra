@@ -1,0 +1,59 @@
+<!--
+  Generated template for the Registro page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header color="primary">
+
+      <ion-avatar item-left>
+        <img style="width: 40px; height: 40px;" src="assets/img/pt-user.svg"/>
+      </ion-avatar>
+
+      <h2>Nuevo usuario <ion-icon name="ion-ios-personadd"></ion-icon></h2>
+
+      <button ion-button item-right no-margin clear large color="light" (click)="login()">
+        <ion-icon name="close"></ion-icon>
+      </button>       
+
+    </ion-list-header>
+    
+    <ion-item padding-right>
+      <ion-label floating>Correo electronico</ion-label>
+      <ion-input [(ngModel)]="mail" (input)="verificaLlenado()" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item padding-right>
+      <ion-label floating>Nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="user" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item padding-right>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input [(ngModel)]="pass" (input)="verificaLlenado()" (blur)="verificaLlenado()" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item padding-right>
+      <ion-label floating>Verificar Contraseña</ion-label>
+      <ion-input [(ngModel)]="pass2" (input)="verificaLlenado()" (blur)="verificaLlenado()" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item text-center padding>
+      <ion-badge color="danger" *ngIf="differentPass == true">La contraseñas deben ser iguales</ion-badge>      
+    </ion-item>
+
+  </ion-list>
+  
+</ion-content>
+
+<ion-footer text-right padding>
+
+    <button ion-button no-margin small icon-right (click)="registro()" [disabled]="buttonDisabled">
+      Registrar<ion-icon name="arrow-forward"></ion-icon>
+    </button>
+
+</ion-footer>

@@ -1,0 +1,57 @@
+<!--
+  Generated template for the Productos page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header color="dark">
+
+      <button ion-button clear item-left color="danger" (click)="regresar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>       
+
+      <h2>Administración</h2>
+      <p color="primarymedium">Stock</p>
+
+    </ion-list-header>    
+
+    <ion-item no-padding text-wrapp *ngFor="let producto of productosAll" (click)="verificarStock(producto)">        
+
+        <div padding-left>
+          <ion-badge style="float:right;" color="{{producto.color}}">{{producto.stock}}</ion-badge>
+          <h2 no-margin>{{producto.nombre}}</h2> 
+          <p color="primary">{{producto.marca}}</p>
+        </div>
+        <div padding-left>
+          <p><ion-icon name="eye"></ion-icon> {{producto.presentacion}} <span style="float:right;">{{producto.codigo}}</span></p>          
+        </div>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+
+    <ion-row>
+
+      <ion-col width-75 no-padding>
+        <ion-searchbar [(ngModel)]="txtSearchBar" (ionInput)="searchProduct($event, 0)"></ion-searchbar>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button small block color="danger" (click)="scanner()">
+          <ion-icon name="barcode"></ion-icon>
+        </button>
+      </ion-col>
+      
+    </ion-row>
+
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,91 @@
+<!--
+  Generated template for the Dashboard page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+
+  <ion-list no-lines no-padding no-margin>
+
+    <ion-list-header color="primary">
+
+      <ion-avatar item-left (click)="perfil()">
+        <img style="width: 40px; height: 40px;" src="assets/img/pt-user.svg"/>
+      </ion-avatar>
+
+      <h2 (click)="perfil()">{{username}}</h2>
+      <p color="light" (click)="perfil()">Socio: PT-{{userId}}</p>
+      
+      <button ion-button icon-only small item-right margin-right color="danger" (click)="salir()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>       
+      
+
+    </ion-list-header>    
+
+    <ion-item-divider text-wrap text-center>
+      <p *ngIf="userTipo == false">Selecciona la tienda que deseas administrar o agrega una nueva.</p>
+      <p *ngIf="userTipo == true">Mensaje para el empleado.</p>
+    </ion-item-divider>
+
+
+  </ion-list>
+
+  <ion-card *ngFor="let tienda of tiendas">
+    <ion-card-content (click)="cuenta(tienda)">
+      <ion-row>
+
+        <ion-col width-80>
+          <h1 color="black" padding-bottom>{{tienda.nombre}}</h1>
+          <p>Mes: <strong color="dark">{{tienda.sumaVentas | currency:'USD':true:'1.2-2'}}</strong></p>
+          <p>Stock: <strong color="dark">{{tienda.sumaStock}}</strong></p>
+          <p>Empleados: {{tienda.empleados}}</p>
+        </ion-col>
+        <ion-col>
+          <ion-avatar item-right>
+            <img style="width: 100px; height: 100px;" src="assets/img/pt-cash.svg"/>
+          </ion-avatar>
+        </ion-col>
+
+      </ion-row>
+    </ion-card-content>
+    
+    <ion-row no-padding>
+      <ion-col no-padding *ngIf="userTipo == false">
+        <button no-margin ion-button full icon-only (click)="editar(tienda)">
+          <ion-icon color="dark" name="create"></ion-icon>
+        </button>
+      </ion-col>
+      <!--<ion-col no-padding *ngIf="userTipo == false">
+        <button no-margin ion-button full icon-only (click)="agregarEmpleado(tienda)">
+          <ion-icon color="light" name="person-add"></ion-icon>
+        </button>
+      </ion-col>-->
+      <ion-col no-padding *ngIf="userTipo == false" (click)="proximamente()">
+        <button no-margin ion-button full icon-only disabled="disabled" icon-left (click)="agregarEmpleado(tienda)">
+          <ion-icon color="light" name="person-add"></ion-icon>
+        </button>
+      </ion-col>
+
+      <ion-col no-padding *ngIf="userTipo == false">
+        <button no-margin ion-button full icon-only (click)="estadisticas(tienda)">
+          <ion-icon color="secondary" name="stats"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col no-padding>
+        <button no-margin ion-button full icon-only color="dark" (click)="productos(tienda)">
+          <ion-icon color="primarymedium" name="archive"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    
+  </ion-card>
+
+  <ion-fab center bottom (click)="proximamente()">
+    <button ion-fab (click)="nuevaTienda()" disabled="disabled" *ngIf="userTipo == false">
+      <ion-icon name="add"></ion-icon>
+    </button>    
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<!--
+  Generated template for the TiendaForm3 page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header color="primary">
+
+      <h2 no-margin>Hola <strong>{{username}}</strong></h2>
+      <p color="light">Información adicional</p>
+
+      <button ion-button item-left no-margin clear color="white" (click)="volver()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>       
+      
+    </ion-list-header>
+
+    <ion-item-divider text-wrap text-center>
+      <p>Por favor complementa tu información.</p>
+    </ion-item-divider>
+    
+  
+    <ion-item padding-right>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Apellido Paterno</ion-label>
+      <ion-input [(ngModel)]="app_p" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Apellido Materno</ion-label>
+      <ion-input [(ngModel)]="app_m" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Telefono</ion-label>
+      <ion-input [(ngModel)]="tel" (input)="verificaLlenado()" type="tel"></ion-input>
+    </ion-item>
+    
+  </ion-list>
+  
+</ion-content>
+
+
+<ion-footer text-center padding>
+    <button ion-button no-margin icon-right (click)="guardar()" [disabled]="buttonDisabled">
+      Finalizar <ion-icon name="partly-sunny"></ion-icon></button>
+</ion-footer>

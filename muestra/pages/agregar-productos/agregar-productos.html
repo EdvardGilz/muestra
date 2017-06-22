@@ -1,0 +1,56 @@
+<!--
+  Generated template for the AgregarProductos page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header padding color="dark">
+
+      <button ion-button clear icon-only item-left color="danger" (click)="regresar()">
+        <ion-icon name="close"></ion-icon>
+      </button>       
+
+      <h2>Ficha de Producto</h2>
+      <p color="primarymedium">Agregar</p>
+
+    </ion-list-header>    
+  
+    <ion-item padding-right>
+      <ion-label floating>Codigo de Barras</ion-label>
+      <ion-input [(ngModel)]="codigo_B" (input)="verificaLlenado()" type="number"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Nombre del producto</ion-label>
+      <ion-input [(ngModel)]="nombre" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Marca</ion-label>
+      <ion-input [(ngModel)]="marca" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating>Presentación (600ml, 1kg, 52,3g)</ion-label>
+      <ion-input [(ngModel)]="presentacion" (input)="verificaLlenado()" type="text"></ion-input>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-toggle [(ngModel)]="tipo" (ionChange)="tipoToggle()" (ionChange)="verificaLlenado()"></ion-toggle>
+      <ion-label color="primary">
+        {{txtTipo}}
+      </ion-label>
+    </ion-item>
+    <ion-item padding-right>
+      <ion-label floating color="primary">Categoría</ion-label>
+      <ion-select [(ngModel)]="categoria" (ionChange)="verificaLlenado()">
+        <ion-option *ngFor="let categoriaD of categoriasData" value="{{categoriaD.id}}">{{categoriaD.descripcion}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item no-lines>
+      <button ion-button large block (click)="guardar()" [disabled]="buttonDisabled">Guardar</button>
+    </ion-item>
+    
+  </ion-list>
+  
+</ion-content>

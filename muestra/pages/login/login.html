@@ -1,0 +1,49 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content padding>
+  
+  <div text-center style="padding:30px 20px 0px;">
+    <img style="width: auto; height: 80px;" src="assets/img/pt-logo.svg"/>
+    <p no-margin color="white">¡El pilón de tu negocio!</p>
+  </div>
+
+  <div style="padding:30px 20px 0px;">
+
+    <ion-list no-margin margin-top class="boxshadow">
+      
+      <ion-list-header no-margin text-left color="primarymedium">
+        <!--<ion-toggle [(ngModel)]="tipoUser" (ionChange)="tipoUserToggle()" (ionChange)="verificaLlenado()"></ion-toggle>
+        <ion-label color="dark">
+          {{txtTipoUser}}
+        </ion-label>-->
+      </ion-list-header>
+      
+      <ion-item no-padding padding-horizontal no-margin>
+        <ion-label floating>Username</ion-label>
+        <ion-input [(ngModel)]="user" (input)="verificaLlenado()" type="text" autocapitalize="none"></ion-input>
+      </ion-item>
+
+      <ion-item no-padding padding-horizontal no-margin>
+        <ion-label floating>Password</ion-label>
+        <ion-input [(ngModel)]="pass" (input)="verificaLlenado()" type="password"></ion-input>
+      </ion-item>
+      
+      <ion-item text-center>
+        <button ion-button block large color="primary" (click)="login()" [disabled]="buttonDisabled">Acceder</button>
+        <button no-margin ion-button small icon-right clear color="dark" *ngIf="tipoUser == false" (click)="registro()">
+          Registrar nueva cuenta <ion-icon name="person-add"></ion-icon></button>
+      </ion-item>
+
+    </ion-list>  
+
+    <ion-col text-right>
+      <small color="white">©2017 BIXNIA </small>
+    </ion-col>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,112 @@
+<!--
+  Generated template for the Cuenta page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-item no-lines text-right no-padding color="dark">
+
+      <button ion-button clear large item-left color="danger" (click)="regresar()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      
+      <h1>
+        <span style="float:left;">Total:</span>
+        {{ sumatoria | currency:'USD':true:'1.2-2' }}
+      </h1>
+
+    </ion-item>
+
+</ion-header>
+
+<ion-content>
+  
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let producto of productos; let i = index" (ionSwipe)="restar(i)">
+    
+    <ion-item color="white" no-padding>
+
+      <ion-row>
+
+        <ion-col width-25 text-center no-margin no-padding padding-left>
+          <span *ngIf="producto.tipo == 0">
+
+            <button ion-button small icon-left block no-margin (click)="addCantidad(i)">
+              <ion-icon name="md-add"></ion-icon>{{producto.cantidad}}pz
+            </button>
+
+            <button ion-button small icon-left block no-margin color="dark"(click)="removeCantidad(i)">
+              <ion-icon name="md-remove"></ion-icon>pz
+            </button>
+
+          </span>
+          
+          <span *ngIf="producto.tipo == 1">
+            <button ion-button block (click)="selectPeso(i, 1)">
+              {{producto.cantidad | number: '1.2-2'}}g
+            </button>
+          </span>          
+        </ion-col>
+
+        <ion-col no-magin no-padding padding-left>
+
+            <h2 style="float:right;" color="danger"><strong>{{producto.total | currency:'USD':true:'1.2-2'}}</strong></h2>
+            <h2>{{producto.nombre}}</h2>
+            <p><span color="primary">{{producto.marca}}</span><br/>
+              <small>{{producto.precio | currency:'USD':true:'1.2-2'}} > {{producto.presentacion}}</small>
+            </p>
+
+        </ion-col>
+
+      </ion-row>  
+
+    </ion-item>    
+
+    <ion-item-options side="right">
+      <button color="danger" ion-button (click)="restar(i)">
+        <ion-icon name="trash"></ion-icon>
+        Eliminar
+      </button>
+    </ion-item-options>
+  
+  </ion-item-sliding>
+    
+  </ion-list>
+  
+  <ion-fab center bottom edge>
+    <button ion-fab color="danger" (click)="scanner(1)">
+      <ion-icon name="barcode"></ion-icon>
+    </button>
+  </ion-fab>     
+
+</ion-content>
+
+<ion-footer>
+  
+  <ion-toolbar>
+      
+      <ion-row>
+
+        <ion-col>
+          
+          <button no-margin ion-button icon-right block small (click)="scanner(2)">            
+            Buscar <ion-icon name="search"></ion-icon>
+          </button>
+
+        </ion-col>
+
+        <ion-col>
+
+          <button no-margin ion-button icon-right block small color="secondary" (click)="save()" [disabled]="buttonDisabled">            
+            ¡Venta! <ion-icon name="done-all"></ion-icon>            
+          </button>
+
+        </ion-col>
+
+      </ion-row>
+    
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,98 @@
+<!--
+  Generated template for the Estadisticas page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+  <ion-toolbar padding color="primary">
+    
+    
+    <ion-buttons left>
+      <button ion-button clear item-left color="danger" (click)="regresar()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    </ion-buttons>
+
+    <ion-buttons left>
+      <ion-avatar>
+        <img style="width: 40px; height: 40px;" src="assets/img/pt-stats.svg"/>
+      </ion-avatar>
+    </ion-buttons>
+
+    <ion-title>
+      Estatus
+    </ion-title>
+    
+    <ion-buttons right>
+      <button item-right ion-button no-margin icon-right color="light" (click)="seleccionarMes()">
+        Mes <ion-icon name="arrow-down"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- El resumen del mes-->
+  <ion-item-divider color="dark">
+    <h2>Resúmen: {{estadisticasMes.fecha}}</h2>
+  </ion-item-divider>
+  <ion-item text-wrap color="white">
+    <span color="primary">Total:</span> <span item-right>{{estadisticasMes.totalMes | currency:'USD':true:'1.2-2'}}</span> 
+    <br /><small>Vendido en el mes</small>
+  </ion-item>
+  <ion-item text-wrap color="white">
+    <span color="primary">Invertido:</span> <span item-right>{{estadisticasMes.totalInvertido | currency:'USD':true:'1.2-2'}}</span>
+    <br /><small>Invertido en abastecer</small>
+  </ion-item>
+  <ion-item text-wrap color="white">
+    <span color="primary">Transacciones:</span><span item-right>{{estadisticasMes.totalVentas}}</span>
+    <br /><small>Ventas realizadas</small>
+  </ion-item>
+  <ion-item text-wrap color="white">
+    <span color="primary">En stock:</span><span item-right>{{estadisticasMes.totalStock}}</span>
+    <br /><small>Total de productos vendidos por transacción, restados al stock</small>
+  </ion-item>
+  <ion-item text-wrap color="white">
+    <span color="primary">Productos vendidos:</span><span item-right>{{estadisticasMes.totalVendidos}}</span>
+    <br /><small>Total de productos vendidos (sin contar a granel)</small>
+  </ion-item>
+  <ion-item text-wrap color="white">
+    <span color="primary">Producto más vendido:</span>
+    <br /><small>{{estadisticasMes.masVendido}}</small>
+  </ion-item>
+
+  <!-- La lista de transacciones de ese mes-->
+  <ion-item-divider color="dark">
+    <h2> Resumen por días</h2>
+  </ion-item-divider>
+
+  <span *ngFor="let estadistica of estadisticasDia">
+    <ion-card  *ngIf="estadistica.totalMes > 0 || estadistica.totalVentas > 0 || estadistica.totalInvertido > 0">
+      <ion-card-header color="dark">
+        <h2>{{estadistica.fecha}}</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Total: {{estadistica.totalMes | currency:'USD':true:'1.2-2'}}</p>
+        <p>Transacciones: {{estadistica.totalVentas}}</p>
+        <p>Invertido: {{estadistica.totalInvertido | currency:'USD':true:'1.2-2'}}</p>
+      </ion-card-content>
+    </ion-card>
+  </span>
+
+  <ion-card *ngIf="vacio == 1">
+    <ion-card-header>
+      Aun no haz realizado ninguna operacion
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <div (click)="proximamente()">
+      <button item-right ion-button icon-right (click)="enviarInforme()" [disabled]="btnDisabled">
+        Enviar informe <ion-icon name="document"></ion-icon>
+      </button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
